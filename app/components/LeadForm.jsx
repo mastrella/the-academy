@@ -15,6 +15,8 @@ const initialForm = {
   emailConsent: true,
   smsConsent: false,
   utm: {},
+  website: "",
+  formStartedAt: "",
 };
 
 export default function LeadForm({ source = "website", title = "Start Here" }) {
@@ -33,9 +35,11 @@ export default function LeadForm({ source = "website", title = "Start Here" }) {
       }
     });
 
-    if (Object.keys(utm).length) {
-      setForm((current) => ({ ...current, utm }));
-    }
+    setForm((current) => ({
+      ...current,
+      formStartedAt: String(Date.now()),
+      ...(Object.keys(utm).length ? { utm } : {}),
+    }));
   }, []);
 
   function updateField(event) {
@@ -78,6 +82,17 @@ export default function LeadForm({ source = "website", title = "Start Here" }) {
         <p className="eyebrow">Lead Capture</p>
         <h2>{title}</h2>
       </div>
+
+      <label className="form-trap" aria-hidden="true">
+        Website
+        <input
+          name="website"
+          tabIndex="-1"
+          autoComplete="off"
+          value={form.website}
+          onChange={updateField}
+        />
+      </label>
 
       <label>
         Name

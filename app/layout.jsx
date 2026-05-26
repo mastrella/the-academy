@@ -1,4 +1,5 @@
 import "./globals.css";
+import { site } from "./data/site";
 
 export const metadata = {
   metadataBase: new URL("https://www.theacademytoronto.ca"),
@@ -8,6 +9,9 @@ export const metadata = {
   },
   description:
     "The Academy Toronto offers Brazilian Jiu Jitsu, Judo, Sanda kickboxing, Wrestling, Adult Gymnastics, Youth BJJ/Judo, private instruction, and free trial classes at 33 Davisville Ave.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "The Academy Toronto",
     description:
@@ -24,12 +28,56 @@ export const metadata = {
     locale: "en_CA",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Academy Toronto",
+    description:
+      "Martial arts training in Toronto: BJJ, Judo, Kickboxing, Wrestling, youth programs, private instruction, and free trial classes.",
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": ["SportsActivityLocation", "LocalBusiness"],
+    name: site.name,
+    url: "https://www.theacademytoronto.ca",
+    image: site.crest,
+    telephone: site.phone,
+    email: site.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "33 Davisville Ave",
+      addressLocality: "Toronto",
+      addressRegion: "ON",
+      postalCode: "M4S 2Y9",
+      addressCountry: "CA",
+    },
+    sameAs: [site.instagram, site.facebook],
+    areaServed: ["Toronto", "Midtown Toronto", "Davisville", "Yonge and Eglinton"],
+    sport: [
+      "Brazilian Jiu Jitsu",
+      "Judo",
+      "Kickboxing",
+      "Wrestling",
+      "Adult Gymnastics",
+    ],
+  };
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </body>
     </html>
   );
 }

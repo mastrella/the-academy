@@ -5,6 +5,18 @@ const requiredFields = ["name", "phone", "email", "program", "audience", "experi
 export async function POST(request) {
   const body = await request.json().catch(() => ({}));
   const missingFields = requiredFields.filter((field) => !String(body[field] ?? "").trim());
+  const startedAt = Number(body.formStartedAt);
+
+  if (String(body.website ?? "").trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (Number.isFinite(startedAt) && Date.now() - startedAt < 1200) {
+    return NextResponse.json(
+      { error: "Please review the form and try again." },
+      { status: 400 },
+    );
+  }
 
   if (missingFields.length) {
     return NextResponse.json(

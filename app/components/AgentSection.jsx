@@ -5,8 +5,8 @@ export default function AgentSection() {
   return (
     <section className="agent-section" id="voice-agent">
       <div className="agent-copy">
-        <p className="eyebrow">New Website Layer</p>
-        <h2>Voice and chat capture for every serious inquiry.</h2>
+        <p className="eyebrow">Questions before class?</p>
+        <h2>Get answers before you walk in.</h2>
         <p>
           This upgrade adds an AI front desk that can answer common questions, collect name,
           phone, email, goals, program interest, and preferred class time, then notify the gym

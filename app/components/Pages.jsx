@@ -1,6 +1,6 @@
 import Link from "next/link";
-import AgentSection from "./AgentSection";
 import LeadForm from "./LeadForm";
+import ProgramExplorer from "./ProgramExplorer";
 import {
   academyTenets,
   assets,
@@ -22,52 +22,76 @@ export function PageIntro({ title, eyebrow, children, centered = false }) {
 }
 
 export function HomePage() {
-  const pillars = [
+  const pathways = [
     {
-      title: "Teamwork",
+      title: "Start Training",
       image: assets.teamwork,
-      body: "Teamwork makes the dream work, and at The Academy we are serious about cultivating a positive, welcoming space.",
+      body: "Book a free trial and get guided into the right first class for your goals, schedule, and experience level.",
+      href: "/free-trial",
+      cta: "Claim trial",
     },
     {
-      title: "Martial Arts",
+      title: "Choose a Program",
       image: assets.martialArts,
-      body: "We specialize in expert training in Brazilian Jiu Jitsu, Judo, Sanda kickboxing, and Wrestling.",
+      body: "Explore BJJ, No Gi, Judo, Wrestling, Kickboxing, Adult Gymnastics, and Youth programs.",
+      href: "/programs",
+      cta: "Explore classes",
     },
     {
-      title: "Discipline",
+      title: "Questions Before Class?",
       image: assets.discipline,
-      body: "Success is an inside job. It is not just physical training that happens here, but character-building too.",
+      body: "Get quick answers about class times, what to bring, where to go, and how to start.",
+      href: "/contact",
+      cta: "Get answers",
     },
   ];
 
   return (
     <main>
-      <section className="home-hero">
+      <section className="home-hero premium-hero">
         <img src={assets.hero} alt="Brazilian Jiu Jitsu training at The Academy Toronto" />
+        <div className="hero-copy">
+          <p className="eyebrow">Midtown Toronto martial arts</p>
+          <h1>Train seriously. Start confidently.</h1>
+          <p>
+            Brazilian Jiu Jitsu, Judo, Kickboxing, Wrestling, Adult Gymnastics, and Youth
+            programs at 33 Davisville Ave.
+          </p>
+          <div className="hero-actions">
+            <Link className="button button-primary" href="/free-trial">
+              Claim a Free Trial
+            </Link>
+            <Link className="button button-secondary" href="/programs">
+              View Programs
+            </Link>
+          </div>
+        </div>
       </section>
 
-      <PageIntro title="Home" centered>
-        <h2>Our Mission</h2>
-        <p>
-          To provide a personalized, authentic Martial Arts experience of the highest quality
-          to our select membership.
-        </p>
-      </PageIntro>
-
-      <section className="content-section">
-        <div className="section-title centered">
-          <h2>Our Classes</h2>
+      <section className="pathway-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">A clearer path in</p>
+          <h2>Your first week starts here.</h2>
+          <p>
+            Step onto the mats, meet the coaches, and find the class that fits how you want to
+            train.
+          </p>
         </div>
-        <div className="feature-grid">
-          {pillars.map((pillar) => (
-            <article className="feature-card" key={pillar.title}>
-              <img src={pillar.image} alt={`${pillar.title} at The Academy Toronto`} />
-              <h3>{pillar.title}</h3>
-              <p>{pillar.body}</p>
+        <div className="pathway-grid">
+          {pathways.map((pathway) => (
+            <article className="pathway-card" key={pathway.title}>
+              <img src={pathway.image} alt="" />
+              <div>
+                <h3>{pathway.title}</h3>
+                <p>{pathway.body}</p>
+                <Link href={pathway.href}>{pathway.cta}</Link>
+              </div>
             </article>
           ))}
         </div>
       </section>
+
+      <ProgramExplorer compact />
 
       <section className="image-band">
         {assets.gallery.map((image) => (
@@ -91,7 +115,18 @@ export function HomePage() {
         </div>
       </section>
 
-      <AgentSection />
+      <section className="conversion-band">
+        <div>
+          <p className="eyebrow">Start here</p>
+          <h2>Try a class before you commit.</h2>
+          <p>
+            Come in, meet the team, and see how the training feels before making a decision.
+          </p>
+        </div>
+        <Link className="button button-primary" href="/free-trial">
+          Claim a Free Trial
+        </Link>
+      </section>
     </main>
   );
 }
@@ -119,8 +154,39 @@ export function LocationPage() {
   return (
     <main>
       <PageIntro title="The Academy Toronto">
-        <p>Come for a tour of our beautiful location at Yonge and Davisville.</p>
+        <p>Visit the Academy inside Striation6 at Yonge and Davisville.</p>
       </PageIntro>
+
+      <section className="location-hero content-section">
+        <div className="map-panel">
+          <iframe
+            title="Map to The Academy Toronto"
+            src="https://www.google.com/maps?q=33%20Davisville%20Ave%2C%20Toronto%2C%20ON%20M4S%202Y9&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <div className="map-pin-card">
+            <strong>The Academy Toronto</strong>
+            <span>33 Davisville Ave</span>
+          </div>
+        </div>
+        <div className="arrival-panel">
+          <p className="eyebrow">Find us fast</p>
+          <h2>33 Davisville Ave, basement level.</h2>
+          <p>
+            Located inside Striation6 near Davisville Station. Arrive 15-20 minutes early for a
+            trial class so there is time for the waiver, tour, and class setup.
+          </p>
+          <div className="arrival-actions">
+            <a className="button button-primary" href="https://www.google.com/maps/search/?api=1&query=33+Davisville+Ave+Toronto+ON" target="_blank" rel="noreferrer">
+              Open Map
+            </a>
+            <Link className="button button-secondary" href="/free-trial">
+              Book Trial
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="two-column content-section">
         <div>
@@ -174,15 +240,10 @@ export function LocationPage() {
 export function ProgramsPage() {
   return (
     <main>
-      <PageIntro title="Programs" />
-      <section className="content-section stacked">
-        {programs.map((program) => (
-          <article className="program-block" key={program.title}>
-            <h2>{program.title}</h2>
-            <p>{program.body}</p>
-          </article>
-        ))}
-      </section>
+      <PageIntro title="Programs">
+        <p>Explore the training options and choose the best starting point.</p>
+      </PageIntro>
+      <ProgramExplorer />
       <section className="cta-panel">
         <h2>Not sure which class fits?</h2>
         <p>Start with a free trial and the team will guide you toward the right program.</p>
@@ -257,12 +318,16 @@ export function CoachingTeamPage() {
             <article className="coach-card" key={coach.name}>
               <img src={coach.image} alt={coach.name} />
               <div>
+                <p className="eyebrow">Coach</p>
                 <h2>{coach.name}</h2>
                 <ul>
                   {coach.bullets.map((bullet) => (
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
+                <Link className="coach-link" href="/free-trial">
+                  Train with the team
+                </Link>
               </div>
             </article>
           ))}
@@ -399,7 +464,18 @@ export function FreeTrialPage() {
         </div>
         <LeadForm source="free_trial" title="Claim Your Free Trial" />
       </section>
-      <AgentSection />
+      <section className="conversion-band">
+        <div>
+          <p className="eyebrow">Need help choosing?</p>
+          <h2>Questions before your first class?</h2>
+          <p>
+            Ask about schedules, trial classes, what to bring, and which program fits your goals.
+          </p>
+        </div>
+        <Link className="button button-secondary" href="/contact">
+          Contact the Team
+        </Link>
+      </section>
     </main>
   );
 }

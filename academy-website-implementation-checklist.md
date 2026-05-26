@@ -10,7 +10,8 @@ Rebuild The Academy Toronto website as a controlled Next.js project, first as a 
 - [x] All major public routes return 200 locally.
 - [x] Lead form and lead API scaffold exist.
 - [x] Local environment template exists.
-- [ ] Retell voice agent is blocked until `RETELL_API_KEY` is added to `.env.local`.
+- [x] Retell voice agent API key is present locally; live call still needs manual microphone/browser verification.
+- [ ] Retell chat widget is blocked until `RETELL_CHAT_AGENT_ID` is added to `.env.local`.
 - [ ] Leads are not yet stored in a real database.
 - [ ] Email automation is not yet connected.
 - [ ] SMS/admin notification automation is not yet connected.
@@ -93,7 +94,7 @@ Rebuild The Academy Toronto website as a controlled Next.js project, first as a 
 - [x] Add all approved current assets.
 - [x] Match responsive behavior.
 - [x] Test all internal links.
-- [ ] Add redirects for old or stale pages.
+- [x] Add first-pass redirects for likely stale schedule/trial/Scarborough URLs.
 
 ## Phase 3: Lead Capture System
 
@@ -118,7 +119,7 @@ Rebuild The Academy Toronto website as a controlled Next.js project, first as a 
 - [ ] Add duplicate detection by email/phone.
 - [ ] Add lead statuses: new, contacted, booked trial, no-show, member, lost.
 - [x] Add server-side validation.
-- [ ] Add spam protection.
+- [x] Add basic honeypot and too-fast-submit spam protection.
 
 ## Phase 4: Email and SMS Automation
 
@@ -155,6 +156,8 @@ Rebuild The Academy Toronto website as a controlled Next.js project, first as a 
 - [ ] Ask adult/youth/kids category when relevant.
 - [ ] Create lead from voice call.
 - [ ] Create lead from chat.
+- [x] Add bottom-right AI widget shell with voice and chat tabs.
+- [x] Add server-side Retell chat session and completion routes.
 - [ ] Send confirmation email after qualified lead capture.
 - [ ] Send confirmation SMS after qualified lead capture.
 - [ ] Notify gym admin after qualified lead capture.
@@ -168,10 +171,10 @@ Rebuild The Academy Toronto website as a controlled Next.js project, first as a 
 - [ ] Add canonical URLs.
 - [ ] Add Open Graph metadata.
 - [ ] Add Twitter/social metadata.
-- [ ] Add sitemap.xml.
-- [ ] Add robots.txt.
-- [ ] Add LocalBusiness structured data.
-- [ ] Add SportsActivityLocation structured data.
+- [x] Add sitemap.xml.
+- [x] Add robots.txt.
+- [x] Add LocalBusiness structured data.
+- [x] Add SportsActivityLocation structured data.
 - [ ] Add Organization structured data.
 - [ ] Add FAQ structured data where appropriate.
 - [ ] Add breadcrumb structured data where appropriate.
@@ -220,22 +223,23 @@ Rebuild The Academy Toronto website as a controlled Next.js project, first as a 
 - [x] Fix inconsistent phone numbers.
 - [ ] Replace image-only schedule with accessible HTML schedule.
 - [x] Add real contact and free trial forms.
-- [ ] Add sticky mobile CTA: Call, Text, Free Trial.
-- [ ] Add clearer hero offer above the fold.
+- [x] Add sticky mobile CTA: Call, Text, Free Trial.
+- [x] Add clearer hero offer above the fold.
 - [ ] Add program-specific landing pages.
 - [ ] Add kids/youth class page.
 - [x] Add private instruction conversion page.
 - [ ] Add testimonials as real text, not only images.
 - [ ] Add Google review integration or curated reviews where appropriate.
-- [ ] Add map, parking, transit, and entrance details.
-- [ ] Add structured data.
-- [ ] Improve mobile navigation.
+- [x] Add map and entrance details.
+- [x] Add structured data.
+- [x] Improve mobile navigation.
 - [ ] Compress and optimize images.
-- [ ] Fix stale 404 pages with redirects.
+- [x] Fix first-pass stale 404 pages with redirects.
 - [ ] Add FAQ content for search and AI answer engines.
 - [ ] Add analytics events on every CTA.
 - [ ] Add automated lead follow-up.
 - [ ] Add voice/chat agent that captures leads while staff are busy.
+- [x] Add polished bottom-right voice/chat widget UI; chat requires `RETELL_CHAT_AGENT_ID`.
 
 ## Provider Research Links
 
