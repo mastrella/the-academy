@@ -563,6 +563,85 @@ p {
   font-weight: 850;
 }
 
+.reviews-proof {
+  display: grid;
+  width: min(var(--max), calc(100% - 40px));
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  gap: 22px;
+  align-items: stretch;
+  margin: 54px auto 16px;
+}
+
+.reviews-proof.compact {
+  margin-top: 16px;
+  margin-bottom: 42px;
+}
+
+.reviews-proof-copy,
+.review-score-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--soft-shadow);
+}
+
+.reviews-proof-copy {
+  padding: 34px;
+  background:
+    linear-gradient(135deg, rgba(156, 31, 31, 0.08), transparent 44%),
+    white;
+}
+
+.reviews-proof-copy h2 {
+  max-width: 760px;
+}
+
+.reviews-proof-copy p {
+  max-width: 720px;
+}
+
+.review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.review-score-card {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  padding: 30px;
+  background: var(--dark);
+  color: white;
+}
+
+.review-score-card span {
+  color: #f4d17a;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.review-score-card strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.review-score-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stars {
+  color: #f4d17a;
+  font-size: 1.4rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
 .page-intro {
   padding: 64px 0 28px;
 }
@@ -1541,7 +1620,8 @@ p {
   .pathway-grid,
   .program-card-grid,
   .coach-grid,
-  .location-hero {
+  .location-hero,
+  .reviews-proof {
     grid-template-columns: 1fr;
   }
 
@@ -1669,10 +1749,20 @@ p {
   }
 
   .pathway-section,
-  .program-explorer {
+  .program-explorer,
+  .reviews-proof {
     width: calc(100vw - 28px);
     max-width: calc(100vw - 28px);
     padding-top: 48px;
+  }
+
+  .reviews-proof {
+    padding-top: 0;
+  }
+
+  .reviews-proof-copy,
+  .review-score-card {
+    padding: 24px;
   }
 
   .premium-hero {

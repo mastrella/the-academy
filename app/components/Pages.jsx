@@ -21,6 +21,42 @@ export function PageIntro({ title, eyebrow, children, centered = false }) {
   );
 }
 
+function GoogleReviewsSection({ compact = false }) {
+  return (
+    <section className={compact ? "reviews-proof compact" : "reviews-proof"}>
+      <div className="reviews-proof-copy">
+        <p className="eyebrow">Trusted by students</p>
+        <h2>Well-reviewed martial arts training in Midtown Toronto.</h2>
+        <p>
+          Students consistently point to the coaching, training culture, safety standards, and
+          serious-but-welcoming atmosphere.
+        </p>
+        <div className="review-actions">
+          <a
+            className="button button-primary"
+            href="https://www.google.com/search?q=The+Academy+Toronto+33+Davisville+Ave+reviews"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read Google Reviews
+          </a>
+          <Link className="button button-secondary" href="/free-trial">
+            Try a Class
+          </Link>
+        </div>
+      </div>
+      <div className="review-score-card">
+        <span>Google Reviews</span>
+        <strong>Highly rated</strong>
+        <div className="stars" aria-label="Five star rating">
+          *****
+        </div>
+        <p>Public review listings show The Academy among Toronto martial arts gyms with a strong review profile.</p>
+      </div>
+    </section>
+  );
+}
+
 export function HomePage() {
   const pathways = [
     {
@@ -90,6 +126,8 @@ export function HomePage() {
           ))}
         </div>
       </section>
+
+      <GoogleReviewsSection />
 
       <ProgramExplorer compact />
 
@@ -464,6 +502,7 @@ export function FreeTrialPage() {
         </div>
         <LeadForm source="free_trial" title="Claim Your Free Trial" />
       </section>
+      <GoogleReviewsSection compact />
       <section className="conversion-band">
         <div>
           <p className="eyebrow">Need help choosing?</p>
