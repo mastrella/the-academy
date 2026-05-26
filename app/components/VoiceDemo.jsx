@@ -98,7 +98,12 @@ export default function VoiceDemo() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data?.details?.message ?? data?.error ?? "Unable to start demo.");
+        const setupMessage = data?.setup?.missing?.length
+          ? `Missing ${data.setup.missing.join(", ")} in ${data.setup.file}. Add the key and restart the dev server.`
+          : "";
+        throw new Error(
+          setupMessage || data?.details?.message || data?.error || "Unable to start demo.",
+        );
       }
 
       setCallId(data.call_id);

@@ -5,22 +5,30 @@ const DEFAULT_AGENT_ID = "agent_01589e1e2e90c7e4e79454cd90";
 const DEFAULT_AGENT_VERSION = 1;
 
 export async function POST(request) {
-  const apiKey = process.env.RETELL_API_KEY;
+  const apiKey = process.env.RETELL_API_KEY?.trim();
 
   if (!apiKey) {
     return NextResponse.json(
-      { error: "RETELL_API_KEY is not configured." },
-      { status: 500 },
+      {
+        error: "Voice agent is not configured.",
+        setup: {
+          missing: ["RETELL_API_KEY"],
+          file: ".env.local",
+          restartRequired: true,
+        },
+      },
+      { status: 503 },
     );
   }
 
   const body = await request.json().catch(() => ({}));
-  const agentVersion = Number(
-    process.env.RETELL_AGENT_VERSION ?? body.agent_version ?? DEFAULT_AGENT_VERSION,
-  );
+  const agentId = process.env.RETELL_AGENT_ID?.trim() || DEFAULT_AGENT_ID;
+  const versionValue =
+    process.env.RETELL_AGENT_VERSION?.trim() || body.agent_version || DEFAULT_AGENT_VERSION;
+  const agentVersion = Number(versionValue);
 
   const payload = {
-    agent_id: process.env.RETELL_AGENT_ID ?? DEFAULT_AGENT_ID,
+    agent_id: agentId,
     agent_version: Number.isFinite(agentVersion) ? agentVersion : DEFAULT_AGENT_VERSION,
     metadata: {
       source: "academy_mma_website",
@@ -51,6 +59,11 @@ export async function POST(request) {
       {
         error: "Unable to create Retell web call.",
         details: data,
+        setup: {
+          provider: "Retell",
+          agent_id: agentId,
+          agent_version: Number.isFinite(agentVersion) ? agentVersion : DEFAULT_AGENT_VERSION,
+        },
       },
       { status: response.status },
     );
