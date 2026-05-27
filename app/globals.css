@@ -1791,7 +1791,7 @@ p {
 
 @media (max-width: 680px) {
   body {
-    padding-bottom: 72px;
+    padding-bottom: 92px;
   }
 
   .announcement {
@@ -1943,39 +1943,83 @@ p {
 
   .mobile-cta-bar {
     position: fixed;
-    right: 12px;
-    bottom: 10px;
-    left: 12px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 70;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 999px;
-    background: var(--dark);
-    box-shadow: var(--shadow);
+    gap: 2px;
+    border-top: 1px solid rgba(226, 222, 213, 0.95);
+    padding: 8px 14px max(8px, env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 -18px 44px rgba(18, 18, 18, 0.1);
+    backdrop-filter: blur(18px);
   }
 
   .mobile-cta-bar a {
     display: grid;
-    min-height: 46px;
+    min-height: 58px;
     place-items: center;
-    color: white;
-    font-size: 0.78rem;
+    gap: 4px;
+    border-radius: 14px;
+    color: #34322f;
+    font-size: 0.68rem;
     font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1;
     text-transform: uppercase;
+    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
   }
 
-  .mobile-cta-bar a + a {
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  .mobile-cta-bar a:hover {
+    background: rgba(242, 240, 234, 0.92);
+    color: var(--accent);
   }
 
-  .mobile-cta-bar a:last-child {
+  .mobile-cta-bar a:active {
+    transform: translateY(1px);
+  }
+
+  .mobile-cta-icon {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border-radius: 999px;
+    color: currentColor;
+  }
+
+  .mobile-cta-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  .mobile-cta-primary {
+    color: var(--accent);
+  }
+
+  .mobile-cta-primary .mobile-cta-icon {
     background: var(--accent);
+    color: white;
+    box-shadow: 0 8px 20px rgba(156, 31, 31, 0.26);
+  }
+
+  .mobile-cta-primary:hover {
+    color: var(--accent-dark);
+  }
+
+  .mobile-cta-primary:hover .mobile-cta-icon {
+    background: var(--accent-dark);
   }
 
   .ai-widget {
-    bottom: 86px;
+    bottom: 100px;
     right: 14px;
   }
 

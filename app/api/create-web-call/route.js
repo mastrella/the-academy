@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const RETELL_CREATE_WEB_CALL_URL = "https://api.retellai.com/v2/create-web-call";
-const DEFAULT_AGENT_ID = "agent_01589e1e2e90c7e4e79454cd90";
+const DEFAULT_AGENT_ID = "agent_cdc6e6209c5ca2efc24f546c01";
 const DEFAULT_AGENT_VERSION = 1;
 
 export async function POST(request) {

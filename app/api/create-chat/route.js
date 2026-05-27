@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 
 const RETELL_CREATE_CHAT_URL = "https://api.retellai.com/create-chat";
+const DEFAULT_CHAT_AGENT_ID = "agent_ec9d391605dd4d1880e6e66a26";
 
 export async function POST(request) {
   const apiKey = process.env.RETELL_API_KEY?.trim();
-  const agentId = process.env.RETELL_CHAT_AGENT_ID?.trim();
+  const agentId = process.env.RETELL_CHAT_AGENT_ID?.trim() || DEFAULT_CHAT_AGENT_ID;
 
   if (!apiKey || !agentId) {
     return NextResponse.json(

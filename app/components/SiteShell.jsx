@@ -172,9 +172,31 @@ export default function SiteShell({ children }) {
       {children}
       <SiteFooter />
       <div className="mobile-cta-bar" aria-label="Quick actions">
-        <a href={`tel:${site.phone.replace(/-/g, "")}`}>Call</a>
-        <a href={`sms:${site.phone.replace(/-/g, "")}`}>Text</a>
-        <Link href="/free-trial">Free Trial</Link>
+        <a href={`tel:${site.phone.replace(/-/g, "")}`}>
+          <span className="mobile-cta-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 16.92v2.28a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 3.5 2 2 0 0 1 4.11 1.3h2.3a2 2 0 0 1 2 1.72c.12.9.32 1.78.6 2.62a2 2 0 0 1-.45 2.11L7.6 8.7a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.84.28 1.72.48 2.62.6A2 2 0 0 1 22 16.92Z" />
+            </svg>
+          </span>
+          <span>Call</span>
+        </a>
+        <a href={`sms:${site.phone.replace(/-/g, "")}`}>
+          <span className="mobile-cta-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.6 8.6 0 0 1-7.7 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.6a8.4 8.4 0 0 1-.9-3.9 8.5 8.5 0 0 1 17 0Z" />
+            </svg>
+          </span>
+          <span>Text</span>
+        </a>
+        <Link className="mobile-cta-primary" href="/free-trial">
+          <span className="mobile-cta-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 2v4M16 2v4M3.5 9.5h17M6 4h12a2.5 2.5 0 0 1 2.5 2.5V19A2.5 2.5 0 0 1 18 21.5H6A2.5 2.5 0 0 1 3.5 19V6.5A2.5 2.5 0 0 1 6 4Z" />
+              <path d="m9 15 2 2 4-4" />
+            </svg>
+          </span>
+          <span>Free Trial</span>
+        </Link>
       </div>
       <AiWidget />
     </>
