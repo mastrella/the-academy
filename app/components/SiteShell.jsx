@@ -43,6 +43,40 @@ export function SiteHeader() {
           ))}
         </nav>
 
+        <details className="mobile-nav">
+          <summary className="mobile-nav-toggle" aria-label="Open navigation menu">
+            <span className="mobile-nav-lines" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </summary>
+          <nav className="mobile-nav-panel" aria-label="Mobile navigation">
+            {navGroups.map((group) => (
+              <div className="mobile-nav-section" key={group.label}>
+                <span>{group.label}</span>
+                {group.links.map((link) => (
+                  <Link href={link.href} key={link.href}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            ))}
+            <div className="mobile-nav-section mobile-nav-actions">
+              {directNavLinks.map((link) => (
+                <Link
+                  className={link.href === "/free-trial" ? "mobile-nav-cta" : ""}
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a href={`tel:${site.phone.replace(/-/g, "")}`}>{site.phone}</a>
+            </div>
+          </nav>
+        </details>
+
         <div className="header-actions" aria-label="Contact and trial links">
           <a className="phone-link" href={`tel:${site.phone.replace(/-/g, "")}`}>
             {site.phone}
